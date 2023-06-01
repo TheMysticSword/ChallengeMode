@@ -107,6 +107,8 @@ namespace ChallengeMode.Modifiers.Unique
                                 GlobalEventManager.instance.OnHitAll(damageInfo, body.healthComponent.gameObject);
                             }
                         }
+
+                        PostProcessing.ChallengeModePostProcessing.MarkDirtyForBody(body);
                     }
                 }
             }
