@@ -1,7 +1,7 @@
 {
   "name": "Virga",
   "version_number": "1.0.0",
-  "website_url": "",
+  "website_url": "https://github.com/TheMysticSword/ChallengeMode",
   "description": "Adds a new gamemode with random modifiers",
   "dependencies": [
     "bbepis-BepInExPack-5.4.1905",
