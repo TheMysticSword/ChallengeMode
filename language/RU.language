@@ -1,0 +1,215 @@
+{
+  "RU": {
+    "GAMEMODE_CHALLENGEMODE_NAME": "Вирга",
+
+    "TITLE_CHALLENGEMODE": "Вирга",
+    "TITLE_CHALLENGEMODE_DESC": "Сыграйте в режим испытаний со случайными модификаторами на каждом этапе.",
+
+    "CHALLENGEMODE_MODIFIER_LIST_TITLE": "Модификаторы:",
+
+    "CHALLENGEMODE_MODIFIER_ALWAYSSLIPPERY_NAME": "Ледовый каток",
+    "CHALLENGEMODE_MODIFIER_ALWAYSSLIPPERY_DESC": "Движение по земле скользящее.",
+
+    "CHALLENGEMODE_MODIFIER_UTILITYCOOLDOWN_NAME": "Беспомощные",
+    "CHALLENGEMODE_MODIFIER_UTILITYCOOLDOWN_DESC": "Вспомогательный навык перезаряжается дольше.",
+
+    "CHALLENGEMODE_MODIFIER_CHESTFAILCHANCE_NAME": "Повторите попытку",
+    "CHALLENGEMODE_MODIFIER_CHESTFAILCHANCE_DESC": "Покупка сундуков может оказаться неудачной.",
+
+    "CHALLENGEMODE_MODIFIER_NOOSP_NAME": "Нет ваншот защиты?",
+    "CHALLENGEMODE_MODIFIER_NOOSP_DESC": "Получите щит, равный 10% здоровья.",
+
+    "CHALLENGEMODE_MODIFIER_PRIMARYSTAMINA_NAME": "Выносливость",
+    "CHALLENGEMODE_MODIFIER_PRIMARYSTAMINA_DESC": "Длительное применение осн. навыка замедлит ваши атаки.",
+
+    "CHALLENGEMODE_MODIFIER_PRINTERBUG_NAME": "Два раза отрежь",
+    "CHALLENGEMODE_MODIFIER_PRINTERBUG_DESC": "Принтеры могут взять ещё один предмет.",
+
+    "CHALLENGEMODE_MODIFIER_LOWHPSTRESS_NAME": "Смерть настигнет",
+    "CHALLENGEMODE_MODIFIER_LOWHPSTRESS_DESC": "Всё лечение уменьшено при ОЗ ниже 25%.",
+
+    "CHALLENGEMODE_MODIFIER_PERFECTEDONPLANET_NAME": "Бездушные конструкции",
+    "CHALLENGEMODE_MODIFIER_PERFECTEDONPLANET_DESC": "Могут появиться Идеальные элиты.",
+
+    "CHALLENGEMODE_MODIFIER_USELESSSTEAK_NAME": "Тухлое мясо",
+    "CHALLENGEMODE_MODIFIER_USELESSSTEAK_DESC": "Стейк из бизона даёт на 24 меньше ОЗ.",
+
+    "CHALLENGEMODE_MODIFIER_MALACHITESPIKEONKILL_NAME": "Последователи Её",
+    "CHALLENGEMODE_MODIFIER_MALACHITESPIKEONKILL_DESC": "При смерти враги выбрасывают Малахитовые шипы.",
+
+    "CHALLENGEMODE_MODIFIER_NOHEALINGAFTERHURT_NAME": "Глубокие раны",
+    "CHALLENGEMODE_MODIFIER_NOHEALINGAFTERHURT_DESC": "Получение урона отключает лечение на полсекунды.",
+
+    "CHALLENGEMODE_MODIFIER_FIREBACKFIRE_NAME": "Ответный огонь",
+    "CHALLENGEMODE_MODIFIER_FIREBACKFIRE_DESC": "Наложение ожога может обжечь и вас.",
+
+    "CHALLENGEMODE_MODIFIER_BOSSFOCUS_NAME": "Глаза на меня",
+    "CHALLENGEMODE_MODIFIER_BOSSFOCUS_DESC": "Враги получают меньше урона в присутствии босса.",
+
+    "CHALLENGEMODE_MODIFIER_DOUBLEJUMPHURTS_NAME": "Кровавые крылья",
+    "CHALLENGEMODE_MODIFIER_DOUBLEJUMPHURTS_DESC": "Получите дополнительный прыжок, наносящий вам урон.",
+
+    "CHALLENGEMODE_MODIFIER_CURSEONHEAVYHIT_NAME": "Искусство тьмы",
+    "CHALLENGEMODE_MODIFIER_CURSEONHEAVYHIT_DESC": "Сильные удары накладывают Метку смерти на вас и врага.",
+
+    "CHALLENGEMODE_MODIFIER_BLOCKSFORHEALTH_NAME": "Искусство света",
+    "CHALLENGEMODE_MODIFIER_BLOCKSFORHEALTH_DESC": "Обменяйте 10% ОЗ на блок 10 атак в этом уровне.",
+
+    "CHALLENGEMODE_MODIFIER_EXPENSIVEPURCHASABLES_NAME": "Невозвратные затраты",
+    "CHALLENGEMODE_MODIFIER_EXPENSIVEPURCHASABLES_DESC": "Некоторые вещи стоят дороже.",
+
+    "CHALLENGEMODE_MODIFIER_MISSCHANCE_NAME": "Дрожащие руки",
+    "CHALLENGEMODE_MODIFIER_MISSCHANCE_DESC": "10% шанс не нанести урон.",
+
+    "CHALLENGEMODE_MODIFIER_REDUCEDVISION_NAME": "Сумерки",
+    "CHALLENGEMODE_MODIFIER_REDUCEDVISION_DESC": "Зрение ухудшено.",
+
+    "CHALLENGEMODE_MODIFIER_BURNCHANCE_NAME": "Дует горячий ветер",
+    "CHALLENGEMODE_MODIFIER_BURNCHANCE_DESC": "Вражеские атаки могут вас обжечь.",
+
+    "CHALLENGEMODE_MODIFIER_ALLCHESTSCLOAKED_NAME": "Оптическая иллюзия",
+    "CHALLENGEMODE_MODIFIER_ALLCHESTSCLOAKED_DESC": "Все сундуки скрытые.",
+
+    "CHALLENGEMODE_MODIFIER_LOSEGOLDOVERTIME_NAME": "Дырявые карманы",
+    "CHALLENGEMODE_MODIFIER_LOSEGOLDOVERTIME_DESC": "Теряйте золото со временем.",
+
+    "CHALLENGEMODE_MODIFIER_BOMBDROP_NAME": "Бум-бум-бум",
+    "CHALLENGEMODE_MODIFIER_BOMBDROP_DESC": "Выбрасывайте бомбу каждые несколько секунд.",
+
+    "CHALLENGEMODE_MODIFIER_NOGOINGBACK_NAME": "Нет пути назад",
+    "CHALLENGEMODE_MODIFIER_NOGOINGBACK_DESC": "Вы не можете идти в обратную сторону.",
+
+    "CHALLENGEMODE_MODIFIER_BIGSHOT_NAME": "Тяжёлые пули",
+    "CHALLENGEMODE_MODIFIER_BIGSHOT_DESC": "Скорость атаки понижена, урон от атак повышен.",
+
+    "CHALLENGEMODE_MODIFIER_DROPPINGITEMS_NAME": "Икота",
+    "CHALLENGEMODE_MODIFIER_DROPPINGITEMS_DESC": "Периодически роняйте предметы.",
+
+    "CHALLENGEMODE_MODIFIER_RANDOMMETEORS_NAME": "Гибельная погода",
+    "CHALLENGEMODE_MODIFIER_RANDOMMETEORS_DESC": "Временами на уровень обрушивается метеоритный дождь.",
+
+    "CHALLENGEMODE_MODIFIER_DRONEPURGATORY_NAME": "Машинное чистилище",
+    "CHALLENGEMODE_MODIFIER_DRONEPURGATORY_DESC": "Каждую минуту умирает случайный дрон.",
+
+    "CHALLENGEMODE_MODIFIER_STEAKREPLACESRANDOMITEMS_NAME": "Сыты по горло",
+    "CHALLENGEMODE_MODIFIER_STEAKREPLACESRANDOMITEMS_DESC": "Любой выпавший предмет может стать Стейком из бизона.",
+
+    "CHALLENGEMODE_MODIFIER_PURCHASESINFLICTSLOW_NAME": "Скряга",
+    "CHALLENGEMODE_MODIFIER_PURCHASESINFLICTSLOW_DESC": "Покупки замедляют вас.",
+
+    "CHALLENGEMODE_MODIFIER_REROLLITEMS_NAME": "Что же это может быть?",
+    "CHALLENGEMODE_MODIFIER_REROLLITEMS_DESC": "Каждую минуту трансформируется случайный предмет.",
+
+    "CHALLENGEMODE_MODIFIER_INCLUDEVOIDREAVERS_NAME": "Ваш вердикт...",
+    "CHALLENGEMODE_MODIFIER_INCLUDEVOIDREAVERS_DESC": "Могут появиться Разбойники Пустоты.",
+
+    "CHALLENGEMODE_MODIFIER_HALFHEALINGTOSHIELDS_NAME": "Равномерное распределение",
+    "CHALLENGEMODE_MODIFIER_HALFHEALINGTOSHIELDS_DESC": "Лечение уменьшено вдвое, но оно влияет и на щиты.",
+
+    "CHALLENGEMODE_MODIFIER_DEFENSEDAMAGE_NAME": "Урон по защите",
+    "CHALLENGEMODE_MODIFIER_DEFENSEDAMAGE_DESC": "Получение урона временно снижает броню.",
+
+    "CHALLENGEMODE_MODIFIER_ENEMIESHAVESHIELD_NAME": "Лазерный мозг",
+    "CHALLENGEMODE_MODIFIER_ENEMIESHAVESHIELD_DESC": "У врагов есть 10% щита.",
+
+    "CHALLENGEMODE_MODIFIER_BOSSREVIVE_NAME": "Ещё не мертвы",
+    "CHALLENGEMODE_MODIFIER_BOSSREVIVE_DESC": "Боссы умирают дважды.",
+
+    "CHALLENGEMODE_MODIFIER_EQUIPMENTCDRANDOMIZED_NAME": "Ремонт своими руками",
+    "CHALLENGEMODE_MODIFIER_EQUIPMENTCDRANDOMIZED_DESC": "Время перезарядки снаряжения варьируется.",
+
+    "CHALLENGEMODE_MODIFIER_BACKPACKWEIGHT_NAME": "Тяжесть рюкзака",
+    "CHALLENGEMODE_MODIFIER_BACKPACKWEIGHT_DESC": "-1% к скорость за каждый предмет в инвентаре.",
+
+    "CHALLENGEMODE_MODIFIER_KILLREMORSE_NAME": "Раскаяние",
+    "CHALLENGEMODE_MODIFIER_KILLREMORSE_DESC": "Убийство врага временно снижает здоровье.",
+
+    "CHALLENGEMODE_MODIFIER_HOLDOUTSHRINK_NAME": "Динамика пузырей",
+    "CHALLENGEMODE_MODIFIER_HOLDOUTSHRINK_DESC": "Зоны удержания больше, но уменьшаются со временем.",
+
+    "CHALLENGEMODE_MODIFIER_TURNOFFMYPAININHIBITORS_NAME": "Устроить резню",
+    "CHALLENGEMODE_MODIFIER_TURNOFFMYPAININHIBITORS_DESC": "Получаемый урон увеличен, но он вас усиливает.",
+
+    "CHALLENGEMODE_MODIFIER_BROKENSPINE_NAME": "Сломанный позвоночник",
+    "CHALLENGEMODE_MODIFIER_BROKENSPINE_DESC": "Получайте больше урона по спине.",
+
+    "CHALLENGEMODE_MODIFIER_DEBUFFINTPRANGE_NAME": "Круг ада",
+    "CHALLENGEMODE_MODIFIER_DEBUFFINTPRANGE_DESC": "Передвижение замедлено в зонах удержания.",
+
+    "CHALLENGEMODE_MODIFIER_NOCRITS_NAME": "Честно и сбалансированно",
+    "CHALLENGEMODE_MODIFIER_NOCRITS_DESC": "Шанс случайных критов уменьшен до 0%.",
+
+    "CHALLENGEMODE_MODIFIER_INCREASEDKNOCKBACK_NAME": "Груша для битья",
+    "CHALLENGEMODE_MODIFIER_INCREASEDKNOCKBACK_DESC": "Сила отталкивания по вам увеличена.",
+
+    "CHALLENGEMODE_MODIFIER_ENEMYMISSILEONHIT_NAME": "Баллистическая растяпа",
+    "CHALLENGEMODE_MODIFIER_ENEMYMISSILEONHIT_DESC": "Шанс при попадании выстрелить в себя ракетой.",
+
+    "CHALLENGEMODE_MODIFIER_FLUTTERJUMPS_NAME": "Порхание",
+    "CHALLENGEMODE_MODIFIER_FLUTTERJUMPS_DESC": "+10 прыжков, но высота прыжка уменьшена.",
+
+    "CHALLENGEMODE_MODIFIER_FASTERBARRIERDECAY_NAME": "Заклинание Покрова",
+    "CHALLENGEMODE_MODIFIER_FASTERBARRIERDECAY_DESC": "Барьер истощается в три раза быстрее.",
+
+    "CHALLENGEMODE_MODIFIER_ENEMYLEECH_NAME": "Вампиры",
+    "CHALLENGEMODE_MODIFIER_ENEMYLEECH_DESC": "Враги высасывают здоровье при попадании.",
+
+    "CHALLENGEMODE_MODIFIER_PROCLIMIT_NAME": "Судьба не задаром",
+    "CHALLENGEMODE_MODIFIER_PROCLIMIT_DESC": "Потеряйте удачу после 999 удачных бросков.",
+
+    "CHALLENGEMODE_MODIFIER_BOSSHALFHPARMOR_NAME": "Благословение Оплота",
+    "CHALLENGEMODE_MODIFIER_BOSSHALFHPARMOR_DESC": "Боссы получают временную броню на 50% ОЗ.",
+
+    "CHALLENGEMODE_MODIFIER_FROSTBITE_NAME": "<color=#C1FCFF>Обморожение</color>",
+    "CHALLENGEMODE_MODIFIER_FROSTBITE_DESC": "Не застаивайтесь на холоде!",
+
+    "CHALLENGEMODE_MODIFIER_MOUNTAINWINDS_NAME": "<color=#FFF5B5>Большая высота</color>",
+    "CHALLENGEMODE_MODIFIER_MOUNTAINWINDS_DESC": "Учитывайте ветер!",
+
+    "CHALLENGEMODE_MODIFIER_ACIDRAIN_NAME": "<color=#C8FF96>Кислотный дождь</color>",
+    "CHALLENGEMODE_MODIFIER_ACIDRAIN_DESC": "В укрытие!",
+
+    "CHALLENGEMODE_MODIFIER_HOTSAND_NAME": "<color=#FF581C>Испепеляющая жара</color>",
+    "CHALLENGEMODE_MODIFIER_HOTSAND_DESC": "Бегите, чтобы не перегреться!",
+
+    "CHALLENGEMODE_MODIFIER_COMMSJAM_NAME": "<color=#B5FFE6>Сбой коммуникации</color>",
+    "CHALLENGEMODE_MODIFIER_COMMSJAM_DESC": "Получение урона отключает снаряжение и дронов!",
+
+    "CHALLENGEMODE_MODIFIER_THUNDER_NAME": "<color=#B5FFE6>Разгромовая роща</color>",
+    "CHALLENGEMODE_MODIFIER_THUNDER_DESC": "Остерегайтесь молнии!",
+
+    "CHALLENGEMODE_MODIFIER_VOIDPATROL_NAME": "<color=#8D47FF>Стелс-миссия</color>",
+    "CHALLENGEMODE_MODIFIER_VOIDPATROL_DESC": "Патрульные Пустоты осматривают местность!",
+
+    "CHALLENGEMODE_MODIFIER_BROTHEREX_NAME": "<link=\"ChallengeModeRainbow\">Восход несчастной луны</link>",
+    "CHALLENGEMODE_MODIFIER_BROTHEREX_DESC": "Митрикс усилен до предела!",
+
+    "CHALLENGEMODE_MODIFIER_VOIDRAIDCRABEX_NAME": "<link=\"ChallengeModeRainbow\">Зов пустоты</link>",
+    "CHALLENGEMODE_MODIFIER_VOIDRAIDCRABEX_DESC": "Пустотник научился новым трюкам!",
+
+    "CHALLENGEMODE_SKILL_PLAYERSTUNLOCKED_NAME": "Оглушение",
+    "CHALLENGEMODE_SKILL_PLAYERSTUNLOCKED_DESCRIPTION": "Нельзя действовать.",
+
+    "CHALLENGEMODE_SKILL_DISARMED_NAME": "Обезоружение",
+    "CHALLENGEMODE_SKILL_DISARMED_DESCRIPTION": "Нельзя применять основную атаку и прыгать.",
+
+    "CHALLENGEMODE_FROSTBITE_WARMTH_TORCH_NAME": "Факел тепла",
+    "CHALLENGEMODE_HOTSAND_BURNINFLICTOR_NAME": "Испепеляющая жара",
+    "CHALLENGEMODE_THUNDER_ATTACKER_NAME": "Молния",
+
+    "BODY_MODIFIER_CHALLENGEMODE_EXBOSS": "{0} ЭКС",
+    "EXBOSS_DIALOGUE_FORMAT": "<color=#AB9AD3><size=180%>{1} ЭКС: <link=\"ChallengeModeShaky\">{0}</link></color></size>",
+
+    "CHALLENGEMODE_PETGAME_TITLE": "Хранитель Хранителя рощи",
+    "CHALLENGEMODE_PETGAME_PLAY": "Играть",
+    "CHALLENGEMODE_PETGAME_TITLE_ONSCREEN": "ХРАНИТЕЛЬ\r\nХРАНИТЕЛЯ\r\nРОЩИ",
+    "CHALLENGEMODE_PETGAME_BUTTON_FEED": "КОРМ",
+    "CHALLENGEMODE_PETGAME_BUTTON_PET": "ГЛАД",
+    "CHALLENGEMODE_PETGAME_BUTTON_SLEEP": "СПАТ",
+    "CHALLENGEMODE_PETGAME_LEVEL": "УР.{0}",
+    "CHALLENGEMODE_PETGAME_FOOD": "ЕДА:{0}",
+    "CHALLENGEMODE_PETGAME_CONSOLE_BUTTON_POWER": "<size=90%>Вкл/Выкл</scale>",
+    "CHALLENGEMODE_PETGAME_CONSOLE_BUTTON_CONFIRM": "ОК",
+    "CHALLENGEMODE_PETGAME_CONSOLE_BUTTON_PALETTESWAP": "<size=80%>Расцветка</scale>"
+  }
+}
