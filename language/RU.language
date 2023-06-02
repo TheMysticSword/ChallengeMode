@@ -35,7 +35,7 @@
     "CHALLENGEMODE_MODIFIER_USELESSSTEAK_DESC": "Стейк из бизона даёт на 24 меньше ОЗ.",
 
     "CHALLENGEMODE_MODIFIER_MALACHITESPIKEONKILL_NAME": "Последователи Её",
-    "CHALLENGEMODE_MODIFIER_MALACHITESPIKEONKILL_DESC": "При смерти враги выбрасывают Малахитовые шипы.",
+    "CHALLENGEMODE_MODIFIER_MALACHITESPIKEONKILL_DESC": "При смерти враги выбрасывают шипы.",
 
     "CHALLENGEMODE_MODIFIER_NOHEALINGAFTERHURT_NAME": "Глубокие раны",
     "CHALLENGEMODE_MODIFIER_NOHEALINGAFTERHURT_DESC": "Получение урона отключает лечение на полсекунды.",
