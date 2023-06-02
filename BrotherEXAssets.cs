@@ -108,7 +108,7 @@ namespace ChallengeMode
                 warningCircleTransform = warningCircle.transform;
             }
 
-            public void Update()
+            public void FixedUpdate()
             {
                 if (body && body.master.aiComponents.Length > 0 && body.master.aiComponents[0].currentEnemy != null)
                 {
