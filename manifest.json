@@ -1,6 +1,6 @@
 {
   "name": "Virga",
-  "version_number": "1.0.1",
+  "version_number": "1.0.2",
   "website_url": "https://github.com/TheMysticSword/ChallengeMode",
   "description": "Adds a new gamemode with random modifiers",
   "dependencies": [
