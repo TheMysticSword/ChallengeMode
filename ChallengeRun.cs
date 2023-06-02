@@ -157,7 +157,7 @@ namespace ChallengeMode
             base.Start();
             if (NetworkServer.active)
             {
-                modifierRng = new Xoroshiro128Plus(runRNG.nextUlong);
+                GenerateStageRNGChallengeRun();
             }
         }
 
@@ -168,6 +168,17 @@ namespace ChallengeMode
             HUD.onHudTargetChangedGlobal -= HUD_onHudTargetChangedGlobal;
             DisableAllModifiers();
             base.OnDestroy();
+        }
+
+        public override void AdvanceStage(SceneDef nextScene)
+        {
+            base.AdvanceStage(nextScene);
+            GenerateStageRNGChallengeRun();
+        }
+
+        public void GenerateStageRNGChallengeRun()
+        {
+            modifierRng = new Xoroshiro128Plus(stageRng.nextUlong);
         }
 
         public override void OnClientGameOver(RunReport runReport)
