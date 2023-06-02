@@ -18,24 +18,24 @@ namespace ChallengeMode.Modifiers
         {
             base.OnEnable();
             timer = RoR2Application.rng.RangeFloat(30f, 60f);
-            RoR2Application.onFixedUpdate += RoR2Application_onFixedUpdate;
+            if (NetworkServer.active)
+            {
+                RoR2Application.onFixedUpdate += RoR2Application_onFixedUpdate;
+            }
         }
 
         private void RoR2Application_onFixedUpdate()
         {
-            if (NetworkServer.active)
+            timer -= Time.fixedDeltaTime;
+            if (timer <= 0f)
             {
-                timer -= Time.fixedDeltaTime;
-                if (timer <= 0f)
-                {
-                    timer += RoR2Application.rng.RangeFloat(intervalMin, intervalMax);
+                timer += RoR2Application.rng.RangeFloat(intervalMin, intervalMax);
 
-                    var controller = Object.Instantiate(LegacyResourcesAPI.Load<GameObject>("Prefabs/NetworkedObjects/MeteorStorm"), Vector3.zero, Quaternion.identity).GetComponent<MeteorStormController>();
-                    controller.owner = null;
-                    controller.ownerDamage = 12f * (1f + 0.2f * (Run.instance.ambientLevel - 1f));
-                    controller.isCrit = false;
-                    NetworkServer.Spawn(controller.gameObject);
-                }
+                var controller = Object.Instantiate(LegacyResourcesAPI.Load<GameObject>("Prefabs/NetworkedObjects/MeteorStorm"), Vector3.zero, Quaternion.identity).GetComponent<MeteorStormController>();
+                controller.owner = null;
+                controller.ownerDamage = 12f * (1f + 0.2f * (Run.instance.ambientLevel - 1f));
+                controller.isCrit = false;
+                NetworkServer.Spawn(controller.gameObject);
             }
         }
 

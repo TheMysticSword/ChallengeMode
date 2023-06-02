@@ -22,8 +22,6 @@ namespace ChallengeMode.Buffs
 
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
-            On.RoR2.CharacterBody.OnBuffFirstStackGained += CharacterBody_OnBuffFirstStackGained;
-            On.RoR2.CharacterBody.OnBuffFinalStackLost += CharacterBody_OnBuffFinalStackLost;
             On.RoR2.CharacterBody.UpdateAllTemporaryVisualEffects += CharacterBody_UpdateAllTemporaryVisualEffects;
             On.RoR2.Run.AdvanceStage += Run_AdvanceStage;
         }
@@ -44,18 +42,6 @@ namespace ChallengeMode.Buffs
         {
             orig(self);
             if (self.HasBuff(buffDef)) self.maxJumpCount -= 9999;
-        }
-
-        private void CharacterBody_OnBuffFirstStackGained(On.RoR2.CharacterBody.orig_OnBuffFirstStackGained orig, CharacterBody self, BuffDef buffDef)
-        {
-            orig(self, buffDef);
-            if (buffDef == this.buffDef) self.MarkAllStatsDirty();
-        }
-
-        private void CharacterBody_OnBuffFinalStackLost(On.RoR2.CharacterBody.orig_OnBuffFinalStackLost orig, CharacterBody self, BuffDef buffDef)
-        {
-            orig(self, buffDef);
-            if (buffDef == this.buffDef) self.MarkAllStatsDirty();
         }
 
         private void CharacterBody_UpdateAllTemporaryVisualEffects(On.RoR2.CharacterBody.orig_UpdateAllTemporaryVisualEffects orig, CharacterBody self)

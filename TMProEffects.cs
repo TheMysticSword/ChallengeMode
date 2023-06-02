@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -36,6 +37,8 @@ namespace ChallengeMode
 
             public float updateTimer = 0f;
             public float updateFrequency = 0.016f;
+
+            public List<TMP_LinkInfo> linksToUpdate = new List<TMP_LinkInfo>();
 
             public float currentTime = 0f;
 
@@ -79,55 +82,69 @@ namespace ChallengeMode
                     updateTimer += updateFrequency;
                     if (textComponent && textComponent.isActiveAndEnabled)
                     {
-                        textComponent.ForceMeshUpdate();
-
                         var textInfo = textComponent.textInfo;
+
+                        if (textInfo == null || textInfo.meshInfo == null || textInfo.meshInfo.Length <= 0 || textInfo.meshInfo[0].vertices == null) return;
 
                         if (textChanged)
                         {
                             textChanged = false;
                             cachedMeshInfo = textInfo.CopyMeshInfoVertexData();
+
+                            linksToUpdate.Clear();
+                            for (var linkIndex = 0; linkIndex < textInfo.linkCount; linkIndex++)
+                            {
+                                var link = textInfo.linkInfo[linkIndex];
+                                var linkID = link.GetLinkID();
+                                if (linkID == "ChallengeModeShaky" ||
+                                    linkID == "ChallengeModeRainbow")
+                                {
+                                    linksToUpdate.Add(link);
+                                }
+                            }
                         }
 
                         var anythingChanged = false;
 
-                        for (var linkIndex = 0; linkIndex < textInfo.linkCount; linkIndex++)
+                        foreach (var link in linksToUpdate)
                         {
-                            var link = textInfo.linkInfo[linkIndex];
-                            if (link.GetLinkID() == "ChallengeModeShaky")
+                            var linkID = link.GetLinkID();
+                            switch (linkID)
                             {
-                                for (int i = link.linkTextfirstCharacterIndex; i < link.linkTextfirstCharacterIndex + link.linkTextLength; i++)
-                                {
-                                    var charInfo = textInfo.characterInfo[i];
-                                    if (!charInfo.isVisible) continue;
-
-                                    anythingChanged = true;
-
-                                    var shakeAmount = 2f;
-                                    var verts = textInfo.meshInfo[charInfo.materialReferenceIndex].vertices;
-                                    var shakeOffset = new Vector3(Random.Range(-shakeAmount, shakeAmount), Random.Range(-shakeAmount, shakeAmount), 0f) * charInfo.scale;
-                                    for (var j = 0; j <= 3; j++)
+                                case "ChallengeModeShaky":
+                                    for (int i = link.linkTextfirstCharacterIndex; i < link.linkTextfirstCharacterIndex + link.linkTextLength; i++)
                                     {
-                                        verts[charInfo.vertexIndex + j] = verts[charInfo.vertexIndex + j] + shakeOffset;
+                                        var charInfo = textInfo.characterInfo[i];
+                                        if (!charInfo.isVisible) continue;
+
+                                        anythingChanged = true;
+
+                                        var shakeAmount = 2f;
+                                        var origVerts = cachedMeshInfo[charInfo.materialReferenceIndex].vertices;
+                                        var destVerts = textInfo.meshInfo[charInfo.materialReferenceIndex].vertices;
+                                        var shakeOffset = new Vector3(Random.Range(-shakeAmount, shakeAmount), Random.Range(-shakeAmount, shakeAmount), 0f) * charInfo.scale;
+                                        for (var j = 0; j <= 3; j++)
+                                        {
+                                            destVerts[charInfo.vertexIndex + j] = origVerts[charInfo.vertexIndex + j] + shakeOffset;
+                                        }
                                     }
-                                }
-                            }
-                            if (link.GetLinkID() == "ChallengeModeRainbow")
-                            {
-                                for (int i = link.linkTextfirstCharacterIndex; i < link.linkTextfirstCharacterIndex + link.linkTextLength; i++)
-                                {
-                                    var charInfo = textInfo.characterInfo[i];
-                                    if (!charInfo.isVisible) continue;
-
-                                    anythingChanged = true;
-
-                                    var origColors = cachedMeshInfo[charInfo.materialReferenceIndex].colors32;
-                                    var destColors = textInfo.meshInfo[charInfo.materialReferenceIndex].colors32;
-                                    for (var j = 0; j <= 3; j++)
+                                    break;
+                                case "ChallengeModeRainbow":
+                                    for (int i = link.linkTextfirstCharacterIndex; i < link.linkTextfirstCharacterIndex + link.linkTextLength; i++)
                                     {
-                                        destColors[charInfo.vertexIndex + j] = Color.Lerp(origColors[charInfo.vertexIndex + j], Color.HSVToRGB((Time.time * 0.15f + 0.06f * i) % 1f, 1f, 1f), 0.2f);
+                                        var charInfo = textInfo.characterInfo[i];
+                                        if (!charInfo.isVisible) continue;
+
+                                        anythingChanged = true;
+
+                                        var origColors = cachedMeshInfo[charInfo.materialReferenceIndex].colors32;
+                                        var destColors = textInfo.meshInfo[charInfo.materialReferenceIndex].colors32;
+                                        for (var j = 0; j <= 3; j++)
+                                        {
+                                            destColors[charInfo.vertexIndex + j] = Color.Lerp(origColors[charInfo.vertexIndex + j], Color.HSVToRGB((Time.time * 0.15f + 0.06f * i) % 1f, 1f, 1f), 0.2f);
+                                        }
                                     }
-                                }
+                                    break;
                             }
                         }
 

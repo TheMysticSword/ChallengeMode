@@ -21,7 +21,6 @@ namespace ChallengeMode.Buffs
             buffDef.iconSprite = Addressables.LoadAssetAsync<BuffDef>("RoR2/Base/Croco/bdCrocoRegen.asset").WaitForCompletion().iconSprite;
 
             IL.RoR2.HealthComponent.Heal += HealthComponent_Heal;
-            On.RoR2.HealthComponent.Heal += HealthComponent_Heal1;
         }
 
         private void HealthComponent_Heal(ILContext il)
@@ -49,22 +48,17 @@ namespace ChallengeMode.Buffs
                     return healAmount;
                 });
                 c.Emit(OpCodes.Starg, healAmountPos);
+
+                hookFailed = false;
             }
             else
             {
-                ChallengeModePlugin.logger.LogError("Failed to hook LowHPStress healing modifier");
-                hookFailed = true;
+                if (!hookFailed)
+                {
+                    ChallengeModePlugin.logger.LogError("Failed to hook LowHPStress healing modifier");
+                    hookFailed = true;
+                }
             }
-        }
-
-        private float HealthComponent_Heal1(On.RoR2.HealthComponent.orig_Heal orig, HealthComponent self, float amount, ProcChainMask procChainMask, bool nonRegen)
-        {
-            var result = orig(self, amount, procChainMask, nonRegen);
-            if (self.body.HasBuff(buffDef) && self.combinedHealthFraction >= 0.25f)
-            {
-                self.body.RemoveBuff(buffDef);
-            }
-            return result;
         }
     }
 }

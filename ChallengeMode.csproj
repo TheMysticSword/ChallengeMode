@@ -25,9 +25,6 @@
     <Reference Include="MysticsRisky2Utils">
       <HintPath>..\..\..\..\Risk of Rain 2\Modding References\MysticsRisky2Utils.dll</HintPath>
     </Reference>
-    <Reference Include="ProperSave">
-      <HintPath>..\..\..\..\Risk of Rain 2\Modding References\ProperSave.dll</HintPath>
-    </Reference>
     <Reference Include="RiskOfOptions">
       <HintPath>..\..\..\..\Risk of Rain 2\Modding References\RiskOfOptions.dll</HintPath>
     </Reference>
@@ -35,5 +32,7 @@
       <HintPath>..\..\..\..\Risk of Rain 2\Modding References\Managed\Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties manifest_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

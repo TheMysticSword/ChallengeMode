@@ -57,12 +57,13 @@ namespace ChallengeMode
                 HG.ArrayUtils.ArrayRemoveAtAndResize(ref array, index);
         }
 
-        public static void MoveNumberTowards(ref float current, float target, float speed)
+        public static float MoveNumberTowards(float current, float target, float speed)
         {
             if (current < target)
                 current = Mathf.Min(current + speed, target);
             else if (current > target)
                 current = Mathf.Max(current - speed, target);
+            return current;
         }
 
         public static bool IsBodyUnderCeiling(CharacterBody body)

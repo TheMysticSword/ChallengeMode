@@ -146,6 +146,8 @@ namespace ChallengeMode
         private int networkingCycle = 0;
 
         public List<ChallengeRunModifier> currentModifiers = new List<ChallengeRunModifier>();
+        public List<ChallengeRunModifier> modifierPool = new List<ChallengeRunModifier>();
+        public List<ChallengeRunModifier> additionalModifierPool = new List<ChallengeRunModifier>();
 
         public override void Start()
         {
@@ -163,6 +165,7 @@ namespace ChallengeMode
         {
             Stage.onServerStageBegin -= Stage_onServerStageBegin;
             Stage.onServerStageComplete -= Stage_onServerStageComplete;
+            HUD.onHudTargetChangedGlobal -= HUD_onHudTargetChangedGlobal;
             DisableAllModifiers();
             base.OnDestroy();
         }
@@ -184,6 +187,7 @@ namespace ChallengeMode
 
         private void Stage_onServerStageBegin(Stage stage)
         {
+            RefreshModifierPools();
             AddRandomNewModifiersForThisStageServer();
             /*
             if (ChallengeModeUtils.CurrentStageNameMatches("moon2"))
@@ -203,22 +207,31 @@ namespace ChallengeMode
             ChallengeRunModifierListPanelController.MarkDirty();
         }
 
+        public void RefreshModifierPools()
+        {
+            modifierPool.Clear();
+            additionalModifierPool.Clear();
+            for (var i = 0; i < ChallengeRunModifierCatalog.allModifiers.Count; i++)
+            {
+                var modifier = ChallengeRunModifierCatalog.allModifiers[i];
+                if (modifier.IsAvailable() && modifier.isEnabledInConfig)
+                {
+                    if (modifier.isAdditional)
+                    {
+                        additionalModifierPool.Add(modifier);
+                    }
+                    else
+                    {
+                        modifierPool.Add(modifier);
+                    }
+                }
+            }
+        }
+
         public void AddRandomNewModifiersForThisStageServer()
         {
             if (NetworkServer.active)
             {
-                var modifierPool = ChallengeRunModifierCatalog.allModifiers.Where(x => x.IsAvailable() && x.isEnabledInConfig).ToList();
-                var additionalModifiers = new List<ChallengeRunModifier>();
-                for (var i = modifierPool.Count - 1; i >= 0; i--)
-                {
-                    var modifier = modifierPool[i];
-                    if (modifier.isAdditional)
-                    {
-                        additionalModifiers.Add(modifier);
-                        modifierPool.RemoveAt(i);
-                    }
-                }
-
                 var newModifiers = new List<ChallengeRunModifier>();
                 for (var i = 0; i < ChallengeModeConfig.modifiersPerStage; i++)
                 {
@@ -227,7 +240,7 @@ namespace ChallengeMode
                     newModifiers.Add(modifier);
                     modifierPool.Remove(modifier);
                 }
-                foreach (var modifier in additionalModifiers)
+                foreach (var modifier in additionalModifierPool)
                 {
                     newModifiers.Add(modifier);
                 }
@@ -464,6 +477,7 @@ namespace ChallengeMode
             }
 
             challengeRun.DisableAllModifiers();
+            challengeRun.RefreshModifierPools();
             challengeRun.AddRandomNewModifiersForThisStageServer();
         }
     }
@@ -495,15 +509,18 @@ namespace ChallengeMode
 
         public void Update()
         {
-            var duration = 2f;
-            var addedTime = Time.deltaTime / duration;
-            for (var i = stripEnterAnimations.Count - 1; i >= 0; i--)
+            if (stripEnterAnimations.Count > 0)
             {
-                var newAnimationTime = Mathf.Min(stripEnterAnimations[i].t + addedTime, stripEnterAnimations[i].maxT);
-                stripEnterAnimations[i].SetT(newAnimationTime);
-                if (newAnimationTime >= stripEnterAnimations[i].maxT)
+                var duration = 2f;
+                var addedTime = Time.deltaTime / duration;
+                for (var i = stripEnterAnimations.Count - 1; i >= 0; i--)
                 {
-                    stripEnterAnimations.RemoveAt(i);
+                    var newAnimationTime = Mathf.Min(stripEnterAnimations[i].t + addedTime, stripEnterAnimations[i].maxT);
+                    stripEnterAnimations[i].SetT(newAnimationTime);
+                    if (newAnimationTime >= stripEnterAnimations[i].maxT)
+                    {
+                        stripEnterAnimations.RemoveAt(i);
+                    }
                 }
             }
         }

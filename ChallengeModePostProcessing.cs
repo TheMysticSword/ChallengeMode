@@ -109,26 +109,26 @@ namespace ChallengeMode.PostProcessing
         {
             if (cameraRigController && cameraRigController.targetBody)
             {
-                ChallengeModeUtils.MoveNumberTowards(
-                    ref frostbiteIntensity,
+                frostbiteIntensity = ChallengeModeUtils.MoveNumberTowards(
+                    frostbiteIntensity,
                     frostbiteIntensityTarget,
                     (frostbiteIntensity < frostbiteIntensityTarget ? 1f : 10f) * Time.deltaTime / (float)Modifiers.Unique.Frostbite.maxTimeInCold
                 );
 
-                ChallengeModeUtils.MoveNumberTowards(
-                    ref rainyIntensity,
+                rainyIntensity = ChallengeModeUtils.MoveNumberTowards(
+                    rainyIntensity,
                     rainyIntensityTarget,
                     0.5f * Time.deltaTime
                 );
 
-                ChallengeModeUtils.MoveNumberTowards(
-                    ref heatIntensity,
+                heatIntensity = ChallengeModeUtils.MoveNumberTowards(
+                    heatIntensity,
                     heatIntensityTarget,
                     1f * Time.deltaTime
                 );
 
-                ChallengeModeUtils.MoveNumberTowards(
-                    ref voidRaidCrabScreamIntensity,
+                voidRaidCrabScreamIntensity = ChallengeModeUtils.MoveNumberTowards(
+                    voidRaidCrabScreamIntensity,
                     voidRaidCrabScreamIntensityTarget,
                     5f * Time.deltaTime
                 );
@@ -137,7 +137,7 @@ namespace ChallengeMode.PostProcessing
 
         public void LateUpdate()
         {
-            if (voidRaidCrabScreamIntensity > 0 && camera)
+            if (voidRaidCrabScreamIntensity > 0f && camera)
             {
                 var voidRaidCrabCameraPosition3D = camera.WorldToScreenPoint(voidRaidCrabWorldPosition);
 

@@ -18,8 +18,8 @@ namespace ChallengeMode.Modifiers
         {
             base.OnEnable();
             On.RoR2.CharacterBody.Start += CharacterBody_Start;
-            On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
             On.RoR2.CharacterMaster.OnInventoryChanged += CharacterMaster_OnInventoryChanged;
+            On.RoR2.Util.CheckRoll_float_CharacterMaster += Util_CheckRoll_float_CharacterMaster;
         }
 
         private void CharacterBody_Start(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self)
@@ -34,39 +34,43 @@ namespace ChallengeMode.Modifiers
             }
         }
 
-        public void ModifyMasterLuck(CharacterMaster master)
+        private void CharacterMaster_OnInventoryChanged(On.RoR2.CharacterMaster.orig_OnInventoryChanged orig, CharacterMaster self)
         {
-            if (master.playerCharacterMasterController && master.hasBody)
+            orig(self);
+            if (self.playerCharacterMasterController && self.hasBody)
             {
-                var body = master.GetBody();
+                var body = self.GetBody();
                 if (!body.HasBuff(ChallengeModeContent.Buffs.ChallengeMode_ProcLimitIndicator))
                 {
-                    master.luck += luckChange;
+                    self.luck += luckChange;
                 }
             }
         }
 
-        private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
+        private bool Util_CheckRoll_float_CharacterMaster(On.RoR2.Util.orig_CheckRoll_float_CharacterMaster orig, float percentChance, CharacterMaster master)
         {
-            orig(self);
-            if (self.isPlayerControlled && !self.HasBuff(ChallengeModeContent.Buffs.ChallengeMode_ProcLimitIndicator))
+            var result = orig(percentChance, master);
+            if (result && master && master.hasBody)
             {
-                ModifyMasterLuck(self.master);
+                var body = master.GetBody();
+                if (body.HasBuff(ChallengeModeContent.Buffs.ChallengeMode_ProcLimitIndicator))
+                {
+                    body.RemoveBuff(ChallengeModeContent.Buffs.ChallengeMode_ProcLimitIndicator);
+                    if (!body.HasBuff(ChallengeModeContent.Buffs.ChallengeMode_ProcLimitIndicator))
+                    {
+                        master.luck += luckChange;
+                    }
+                }
             }
-        }
-
-        private void CharacterMaster_OnInventoryChanged(On.RoR2.CharacterMaster.orig_OnInventoryChanged orig, CharacterMaster self)
-        {
-            orig(self);
-            ModifyMasterLuck(self);
+            return result;
         }
 
         public override void OnDisable()
         {
             base.OnDisable();
             On.RoR2.CharacterBody.Start -= CharacterBody_Start;
-            On.RoR2.CharacterBody.RecalculateStats -= CharacterBody_RecalculateStats;
             On.RoR2.CharacterMaster.OnInventoryChanged -= CharacterMaster_OnInventoryChanged;
+            On.RoR2.Util.CheckRoll_float_CharacterMaster -= Util_CheckRoll_float_CharacterMaster;
         }
     }
 }

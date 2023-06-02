@@ -1,4 +1,5 @@
 using MysticsRisky2Utils;
+using RoR2;
 
 namespace ChallengeMode.Modifiers
 {
@@ -11,6 +12,7 @@ namespace ChallengeMode.Modifiers
         {
             base.OnEnable();
             GenericGameEvents.OnTakeDamage += GenericGameEvents_OnTakeDamage;
+            On.RoR2.HealthComponent.Heal += HealthComponent_Heal;
         }
 
         private void GenericGameEvents_OnTakeDamage(RoR2.DamageReport damageReport)
@@ -24,11 +26,22 @@ namespace ChallengeMode.Modifiers
                 }
             }
         }
-        
+
+        private float HealthComponent_Heal(On.RoR2.HealthComponent.orig_Heal orig, HealthComponent self, float amount, ProcChainMask procChainMask, bool nonRegen)
+        {
+            var result = orig(self, amount, procChainMask, nonRegen);
+            if (self.body.HasBuff(ChallengeModeContent.Buffs.ChallengeMode_LowHPStress) && self.combinedHealthFraction >= 0.25f)
+            {
+                self.body.RemoveBuff(ChallengeModeContent.Buffs.ChallengeMode_LowHPStress);
+            }
+            return result;
+        }
+
         public override void OnDisable()
         {
             base.OnDisable();
             GenericGameEvents.OnTakeDamage -= GenericGameEvents_OnTakeDamage;
+            On.RoR2.HealthComponent.Heal -= HealthComponent_Heal;
         }
 
         public override bool IsAvailable()
