@@ -149,6 +149,10 @@ namespace ChallengeMode
         public List<ChallengeRunModifier> modifierPool = new List<ChallengeRunModifier>();
         public List<ChallengeRunModifier> additionalModifierPool = new List<ChallengeRunModifier>();
 
+        public float markHUDDirtyTimer = 0f;
+        public float markHUDDirtyInterval = 1f;
+        public float markHUDDirtyLimit = 15f;
+
         public override void Start()
         {
             Stage.onServerStageBegin += Stage_onServerStageBegin;
@@ -168,6 +172,21 @@ namespace ChallengeMode
             HUD.onHudTargetChangedGlobal -= HUD_onHudTargetChangedGlobal;
             DisableAllModifiers();
             base.OnDestroy();
+        }
+
+        public override void OnFixedUpdate()
+        {
+            base.OnFixedUpdate();
+            if (markHUDDirtyLimit > 0f)
+            {
+                markHUDDirtyLimit -= Time.fixedDeltaTime;
+                markHUDDirtyTimer += Time.fixedDeltaTime;
+                if (markHUDDirtyTimer >= markHUDDirtyInterval)
+                {
+                    markHUDDirtyTimer -= markHUDDirtyInterval;
+                    ChallengeRunModifierListPanelController.MarkDirty();
+                }
+            }
         }
 
         public override void AdvanceStage(SceneDef nextScene)
