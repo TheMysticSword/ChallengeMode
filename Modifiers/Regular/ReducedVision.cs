@@ -20,7 +20,7 @@ namespace ChallengeMode.Modifiers
             {
                 if (self.visionDistance >= float.PositiveInfinity)
                 {
-                    self.visionDistance = 45f;
+                    self.visionDistance = 60f;
                 }
                 else
                 {
