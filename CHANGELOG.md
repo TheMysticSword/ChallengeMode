@@ -1,3 +1,7 @@
+## 1.0.3
+* Increased Nightfall vision range from 45m to 60m
+* Potentially fixed the modifier HUD panels not appearing
+* Knockup stun works more consistently in multiplayer, and now has a max duration in case it doesn't properly wear off on landing
 ## 1.0.2
 * Fixed more performance issues
 * Fixed severe lag during the credits sequence

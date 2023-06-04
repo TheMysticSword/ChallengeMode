@@ -31,7 +31,7 @@ namespace ChallengeMode
     {
         public const string PluginGUID = "com.themysticsword.challengemode";
         public const string PluginName = "Virga";
-        public const string PluginVersion = "1.0.2";
+        public const string PluginVersion = "1.0.3";
 
         public static System.Reflection.Assembly executingAssembly;
         internal static System.Type declaringType;
