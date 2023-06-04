@@ -1314,7 +1314,7 @@ namespace ChallengeMode
 										scale = 40f
 									}, true);
                                 }
-								Buffs.PlayerKnockupStun.KnockupBody(enemy.body, Vector3.up * force);
+								Buffs.PlayerKnockupStun.KnockupBody(enemy.body, Vector3.up * force, 7f);
 							}
 						}
 					}

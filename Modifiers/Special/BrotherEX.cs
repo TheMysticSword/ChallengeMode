@@ -143,7 +143,7 @@ namespace ChallengeMode.Modifiers.Special
             {
                 if (enemy.body)
                 {
-                    Buffs.PlayerKnockupStun.KnockupBody(enemy.body, Vector3.up * 1000f + (myPosition - enemy.body.corePosition).normalized * (strong ? -3000f : 500f));
+                    Buffs.PlayerKnockupStun.KnockupBody(enemy.body, Vector3.up * 1000f + (myPosition - enemy.body.corePosition).normalized * (strong ? -3000f : 500f), 2.3f);
                 }
             }
         }

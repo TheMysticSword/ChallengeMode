@@ -14,6 +14,7 @@ namespace ChallengeMode.Buffs
         {
             base.OnPluginAwake();
             NetworkingAPI.RegisterMessageType<SyncKnockupToServer>();
+            NetworkingAPI.RegisterMessageType<SyncKnockupRemovalToServer>();
         }
 
         public override void OnLoad() {
@@ -25,7 +26,7 @@ namespace ChallengeMode.Buffs
 
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
-            On.RoR2.GlobalEventManager.OnCharacterHitGroundServer += GlobalEventManager_OnCharacterHitGroundServer;
+            On.RoR2.CharacterMotor.OnLanded += CharacterMotor_OnLanded;
             On.RoR2.CharacterBody.OnClientBuffsChanged += CharacterBody_OnClientBuffsChanged;
         }
 
@@ -61,15 +62,19 @@ namespace ChallengeMode.Buffs
             }
         }
 
-        private void GlobalEventManager_OnCharacterHitGroundServer(On.RoR2.GlobalEventManager.orig_OnCharacterHitGroundServer orig, GlobalEventManager self, CharacterBody characterBody, Vector3 impactVelocity)
+        private void CharacterMotor_OnLanded(On.RoR2.CharacterMotor.orig_OnLanded orig, CharacterMotor self)
         {
-            orig(self, characterBody, impactVelocity);
-            if (characterBody.HasBuff(buffDef))
+            orig(self);
+            if (self.hasEffectiveAuthority)
             {
-                characterBody.ClearTimedBuffs(buffDef);
-                if (characterBody.HasBuff(buffDef))
-                    characterBody.RemoveBuff(buffDef);
-                characterBody.AddTimedBuff(buffDef, 0.5f);
+                if (NetworkServer.active)
+                {
+                    HandleKnockupRemovalServer(self.body);
+                }
+                else
+                {
+                    new SyncKnockupRemovalToServer(self.body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
+                }
             }
         }
 
@@ -115,7 +120,7 @@ namespace ChallengeMode.Buffs
             }
         }
 
-        public static void KnockupBody(CharacterBody body, Vector3 force, bool requireGrounded = true)
+        public static void KnockupBody(CharacterBody body, Vector3 force, float maxDuration = 2.3f, bool requireGrounded = true)
         {
             if (body && body.hasEffectiveAuthority && (!requireGrounded || (body.characterMotor && body.characterMotor.isGrounded)) && body.healthComponent)
             {
@@ -123,11 +128,11 @@ namespace ChallengeMode.Buffs
 
                 if (NetworkServer.active)
                 {
-                    body.AddBuff(ChallengeModeContent.Buffs.ChallengeMode_PlayerKnockupStun);
+                    body.AddTimedBuff(ChallengeModeContent.Buffs.ChallengeMode_PlayerKnockupStun, maxDuration);
                 }
                 else
                 {
-                    new SyncKnockupToServer(body.GetComponent<NetworkIdentity>().netId).Send(NetworkDestination.Server);
+                    new SyncKnockupToServer(body.GetComponent<NetworkIdentity>().netId, maxDuration).Send(NetworkDestination.Server);
                 }
             }
         }
@@ -139,15 +144,68 @@ namespace ChallengeMode.Buffs
             body.characterMotor.jumpCount = 0;
         }
 
+        private static void HandleKnockupRemovalServer(CharacterBody body)
+        {
+            if (body.HasBuff(ChallengeModeContent.Buffs.ChallengeMode_PlayerKnockupStun))
+            {
+                body.ClearTimedBuffs(ChallengeModeContent.Buffs.ChallengeMode_PlayerKnockupStun);
+                if (body.HasBuff(ChallengeModeContent.Buffs.ChallengeMode_PlayerKnockupStun))
+                    body.RemoveBuff(ChallengeModeContent.Buffs.ChallengeMode_PlayerKnockupStun);
+                body.AddTimedBuff(ChallengeModeContent.Buffs.ChallengeMode_PlayerKnockupStun, 0.5f);
+            }
+        }
+
         public class SyncKnockupToServer : INetMessage
         {
             NetworkInstanceId objID;
+            float maxDuration;
 
             public SyncKnockupToServer()
             {
             }
 
-            public SyncKnockupToServer(NetworkInstanceId objID)
+            public SyncKnockupToServer(NetworkInstanceId objID, float maxDuration)
+            {
+                this.objID = objID;
+                this.maxDuration = maxDuration;
+            }
+
+            public void Deserialize(NetworkReader reader)
+            {
+                objID = reader.ReadNetworkId();
+                maxDuration = reader.ReadSingle();
+            }
+
+            public void OnReceived()
+            {
+                if (!NetworkServer.active) return;
+                GameObject obj = Util.FindNetworkObject(objID);
+                if (obj)
+                {
+                    var body = obj.GetComponent<CharacterBody>();
+                    if (body)
+                    {
+                        body.AddTimedBuff(ChallengeModeContent.Buffs.ChallengeMode_PlayerKnockupStun, maxDuration);
+                    }
+                }
+            }
+
+            public void Serialize(NetworkWriter writer)
+            {
+                writer.Write(objID);
+                writer.Write(maxDuration);
+            }
+        }
+
+        public class SyncKnockupRemovalToServer : INetMessage
+        {
+            NetworkInstanceId objID;
+
+            public SyncKnockupRemovalToServer()
+            {
+            }
+
+            public SyncKnockupRemovalToServer(NetworkInstanceId objID)
             {
                 this.objID = objID;
             }
@@ -166,7 +224,7 @@ namespace ChallengeMode.Buffs
                     var body = obj.GetComponent<CharacterBody>();
                     if (body)
                     {
-                        body.AddBuff(ChallengeModeContent.Buffs.ChallengeMode_PlayerKnockupStun);
+                        HandleKnockupRemovalServer(body);
                     }
                 }
             }
