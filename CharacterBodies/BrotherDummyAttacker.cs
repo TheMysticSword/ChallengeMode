@@ -53,6 +53,8 @@ namespace ChallengeMode.CharacterBodies
             characterBody.baseNameToken = "UNIDENTIFIED";
             characterBody.subtitleNameToken = "";
 
+            prefab.AddComponent<ChallengeModeRejectAllDamage>();
+
             // state machines
             EntityStateMachine bodyStateMachine = SetUpEntityStateMachine("Body", typeof(EntityStates.Uninitialized), typeof(EntityStates.Uninitialized));
             
@@ -64,6 +66,14 @@ namespace ChallengeMode.CharacterBodies
             CharacterModel characterModel = modelTransform.GetComponent<CharacterModel>();
             characterModel.baseRendererInfos = new CharacterModel.RendererInfo[0];
 			AfterCharacterModelSetUp();
+        }
+    }
+
+    public class ChallengeModeRejectAllDamage : MonoBehaviour, IOnIncomingDamageServerReceiver
+    {
+        public void OnIncomingDamageServer(DamageInfo damageInfo)
+        {
+            damageInfo.rejected = true;
         }
     }
 }

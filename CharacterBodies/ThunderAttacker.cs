@@ -53,6 +53,8 @@ namespace ChallengeMode.CharacterBodies
             characterBody.baseNameToken = "CHALLENGEMODE_THUNDER_ATTACKER_NAME";
             characterBody.subtitleNameToken = "";
 
+            prefab.AddComponent<ChallengeModeRejectAllDamage>();
+
             // state machines
             EntityStateMachine bodyStateMachine = SetUpEntityStateMachine("Body", typeof(EntityStates.Uninitialized), typeof(EntityStates.Uninitialized));
             
