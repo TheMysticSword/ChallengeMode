@@ -18,9 +18,13 @@ namespace ChallengeMode.Modifiers.Unique
         
         public static CharacterMaster fireInflictorMaster;
 
+        public BodyIndex engiTurretBodyIndex;
+        
         public override void OnEnable()
         {
             base.OnEnable();
+
+            engiTurretBodyIndex = BodyCatalog.FindBodyIndex("EngiTurretBody");
 
             On.RoR2.CharacterBody.Start += CharacterBody_Start;
             foreach (var body in CharacterBody.readOnlyInstancesList)
@@ -54,7 +58,12 @@ namespace ChallengeMode.Modifiers.Unique
         {
             orig(self);
             if (!self.GetComponent<ChallengeModeHotSandHelper>())
-                self.gameObject.AddComponent<ChallengeModeHotSandHelper>();
+            {
+                if (self.isPlayerControlled || !self.bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical) || self.bodyIndex == engiTurretBodyIndex)
+                {
+                    self.gameObject.AddComponent<ChallengeModeHotSandHelper>();
+                }
+            }
         }
 
         public class ChallengeModeHotSandHelper : MonoBehaviour
