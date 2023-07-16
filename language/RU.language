@@ -110,7 +110,7 @@
     "CHALLENGEMODE_MODIFIER_DEFENSEDAMAGE_DESC": "Получение урона временно снижает броню.",
 
     "CHALLENGEMODE_MODIFIER_ENEMIESHAVESHIELD_NAME": "Лазерный мозг",
-    "CHALLENGEMODE_MODIFIER_ENEMIESHAVESHIELD_DESC": "У врагов есть 10% щита.",
+    "CHALLENGEMODE_MODIFIER_ENEMIESHAVESHIELD_DESC": "У врагов есть 20% щита.",
 
     "CHALLENGEMODE_MODIFIER_BOSSREVIVE_NAME": "Ещё не мертвы",
     "CHALLENGEMODE_MODIFIER_BOSSREVIVE_DESC": "Боссы умирают дважды.",
@@ -155,7 +155,7 @@
     "CHALLENGEMODE_MODIFIER_ENEMYLEECH_DESC": "Враги высасывают здоровье при попадании.",
 
     "CHALLENGEMODE_MODIFIER_PROCLIMIT_NAME": "Судьба не задаром",
-    "CHALLENGEMODE_MODIFIER_PROCLIMIT_DESC": "Потеряйте удачу после 999 удачных бросков.",
+    "CHALLENGEMODE_MODIFIER_PROCLIMIT_DESC": "Потеряйте удачу после 500 удачных бросков.",
 
     "CHALLENGEMODE_MODIFIER_BOSSHALFHPARMOR_NAME": "Благословение Оплота",
     "CHALLENGEMODE_MODIFIER_BOSSHALFHPARMOR_DESC": "Боссы получают временную броню на 50% ОЗ.",
