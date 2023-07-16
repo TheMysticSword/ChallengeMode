@@ -11,7 +11,7 @@ namespace ChallengeMode.Modifiers
         public override string nameToken => "CHALLENGEMODE_MODIFIER_PROCLIMIT_NAME";
         public override string descriptionToken => "CHALLENGEMODE_MODIFIER_PROCLIMIT_DESC";
 
-        public int procLimit = 999;
+        public int procLimit = 500;
         public int luckChange = -1;
         
         public override void OnEnable()

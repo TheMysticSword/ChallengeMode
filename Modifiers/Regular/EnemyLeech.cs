@@ -8,7 +8,7 @@ namespace ChallengeMode.Modifiers
         public override string nameToken => "CHALLENGEMODE_MODIFIER_ENEMYLEECH_NAME";
         public override string descriptionToken => "CHALLENGEMODE_MODIFIER_ENEMYLEECH_DESC";
 
-        public float leechFraction = 0.33f;
+        public float leechFraction = 1.5f;
 
         public override void OnEnable()
         {

@@ -9,7 +9,7 @@ namespace ChallengeMode.Modifiers
         public override string nameToken => "CHALLENGEMODE_MODIFIER_STEAKREPLACESRANDOMITEMS_NAME";
         public override string descriptionToken => "CHALLENGEMODE_MODIFIER_STEAKREPLACESRANDOMITEMS_DESC";
 
-        public float chance = 10f;
+        public float chance = 20f;
         public PickupIndex steakPickupIndex;
 
         public override void OnEnable()

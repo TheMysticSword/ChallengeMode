@@ -11,7 +11,7 @@ namespace ChallengeMode.Modifiers
         public override string descriptionToken => "CHALLENGEMODE_MODIFIER_DROPPINGITEMS_DESC";
 
         public float timer = 0.5f;
-        public float intervalMin = 0f;
+        public float intervalMin = 5f;
         public float intervalMax = 30f;
 
         public override void OnEnable()

@@ -17,7 +17,7 @@ namespace ChallengeMode.Modifiers
         {
             if (sender.teamComponent.teamIndex != RoR2.TeamIndex.Player && sender.teamComponent.teamIndex != RoR2.TeamIndex.Neutral)
             {
-                args.baseShieldAdd += sender.maxHealth * sender.cursePenalty * 0.1f;
+                args.baseShieldAdd += sender.maxHealth * sender.cursePenalty * 0.2f;
             }
         }
 
