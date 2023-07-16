@@ -8,6 +8,7 @@
 	* Increased Vampires healing from 33% of damage dealt to 150%
 	* Reduced Dice for a Price proc limit from 999 to 500
 	* Increased Fed Up steak replace chance from 10% to 20%
+* Potentially fixed modifiers not being networked on the first stage in co-op
 ## 1.0.3
 * Increased Nightfall vision range from 45m to 60m
 * Potentially fixed the modifier HUD panels not appearing

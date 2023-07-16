@@ -304,8 +304,8 @@ namespace ChallengeMode
 
                 ChallengeRunModifierListPanelController.MarkDirty();
 
-                new SyncSetNewModifiers(gameObject.GetComponent<NetworkIdentity>().netId, networkingCycle, currentModifiers.Select(x => x.modifierIndex).ToList()).Send(NetworkDestination.Clients);
                 networkingCycle++;
+                new SyncSetNewModifiers(gameObject.GetComponent<NetworkIdentity>().netId, networkingCycle, currentModifiers.Select(x => x.modifierIndex).ToList()).Send(NetworkDestination.Clients);
             }
         }
 
@@ -329,8 +329,8 @@ namespace ChallengeMode
 
             if (NetworkServer.active)
             {
-                new SyncDisableAllModifiers(gameObject.GetComponent<NetworkIdentity>().netId, networkingCycle).Send(NetworkDestination.Clients);
                 networkingCycle++;
+                new SyncDisableAllModifiers(gameObject.GetComponent<NetworkIdentity>().netId, networkingCycle).Send(NetworkDestination.Clients);
             }
         }
 
