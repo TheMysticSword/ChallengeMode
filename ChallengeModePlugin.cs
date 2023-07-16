@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using MysticsRisky2Utils;
+using R2API;
 using R2API.Utils;
 using RoR2;
 using RoR2.ContentManagement;
@@ -15,14 +16,13 @@ using UnityEngine;
 namespace ChallengeMode
 {
     [BepInDependency(R2API.R2API.PluginGUID)]
-    [BepInDependency(R2API.R2API.PluginGUID + ".elites")]
-    [BepInDependency(R2API.R2API.PluginGUID + ".damagetype")]
-    [BepInDependency(R2API.R2API.PluginGUID + ".dot")]
-    [BepInDependency(R2API.R2API.PluginGUID + ".language")]
-    [BepInDependency(R2API.R2API.PluginGUID + ".networking")]
-    [BepInDependency(R2API.R2API.PluginGUID + ".orb")]
-    [BepInDependency(R2API.R2API.PluginGUID + ".prefab")]
-    [BepInDependency(R2API.R2API.PluginGUID + ".recalculatestats")]
+    [BepInDependency(EliteAPI.PluginGUID)]
+    [BepInDependency(DamageAPI.PluginGUID)]
+    [BepInDependency(DotAPI.PluginGUID)]
+    [BepInDependency(LanguageAPI.PluginGUID)]
+    [BepInDependency(R2API.Networking.NetworkingAPI.PluginGUID)]
+    [BepInDependency(PrefabAPI.PluginGUID)]
+    [BepInDependency(RecalculateStatsAPI.PluginGUID)]
     [BepInDependency(MysticsRisky2UtilsPlugin.PluginGUID)]
     [BepInDependency("com.rune580.riskofoptions")]
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
