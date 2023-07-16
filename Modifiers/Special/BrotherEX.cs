@@ -188,7 +188,11 @@ namespace ChallengeMode.Modifiers.Special
 
         private void ExitSkyLeap_OnEnter(On.EntityStates.BrotherMonster.ExitSkyLeap.orig_OnEnter orig, EntityStates.BrotherMonster.ExitSkyLeap self)
         {
+            var oldDamage = EntityStates.BrotherMonster.ExitSkyLeap.waveProjectileDamageCoefficient;
+            EntityStates.BrotherMonster.ExitSkyLeap.waveProjectileDamageCoefficient = 1f;
             orig(self);
+            EntityStates.BrotherMonster.ExitSkyLeap.waveProjectileDamageCoefficient = oldDamage;
+
             GlobalKnockup(self.characterBody.corePosition, false);
             foreach (var controller in InstanceTracker.GetInstancesList<BrotherEXAssets.ChallengeModeSkyLeapHomingController>().ToList())
             {
@@ -201,7 +205,10 @@ namespace ChallengeMode.Modifiers.Special
 
         private void UltChannelState_FireWave(On.EntityStates.BrotherMonster.UltChannelState.orig_FireWave orig, EntityStates.BrotherMonster.UltChannelState self)
         {
+            var oldDamage = EntityStates.BrotherMonster.UltChannelState.waveProjectileDamageCoefficient;
+            EntityStates.BrotherMonster.UltChannelState.waveProjectileDamageCoefficient = 3f;
             orig(self);
+            EntityStates.BrotherMonster.UltChannelState.waveProjectileDamageCoefficient = oldDamage;
 
             RoR2Application.fixedTimeTimers.CreateTimer(1f, () =>
             {
@@ -215,7 +222,7 @@ namespace ChallengeMode.Modifiers.Special
                     for (int i = 0; i < EntityStates.BrotherMonster.ExitSkyLeap.waveProjectileCount; i++)
                     {
                         Vector3 forward = Quaternion.AngleAxis(num * (float)i, Vector3.up) * point;
-                        ProjectileManager.instance.FireProjectile(EntityStates.BrotherMonster.ExitSkyLeap.waveProjectilePrefab, footPosition, Util.QuaternionSafeLookRotation(forward), self.gameObject, self.characterBody.damage * EntityStates.BrotherMonster.ExitSkyLeap.waveProjectileDamageCoefficient, EntityStates.BrotherMonster.ExitSkyLeap.waveProjectileForce, Util.CheckRoll(self.characterBody.crit, self.characterBody.master), DamageColorIndex.Default, null, -1f);
+                        ProjectileManager.instance.FireProjectile(EntityStates.BrotherMonster.ExitSkyLeap.waveProjectilePrefab, footPosition, Util.QuaternionSafeLookRotation(forward), self.gameObject, self.characterBody.damage * 1f, EntityStates.BrotherMonster.ExitSkyLeap.waveProjectileForce, Util.CheckRoll(self.characterBody.crit, self.characterBody.master), DamageColorIndex.Default, null, -1f);
                     }
                 }
             });
