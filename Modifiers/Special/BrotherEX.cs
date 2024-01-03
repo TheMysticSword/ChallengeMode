@@ -5,6 +5,7 @@ using RoR2;
 using RoR2.Projectile;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
 
 namespace ChallengeMode.Modifiers.Special
@@ -21,6 +22,14 @@ namespace ChallengeMode.Modifiers.Special
 
         private float oldWaveProjectileArc = 0f;
 
+        private bool isUlting = false;
+        private int ultWaveCount = 15;
+        private float ultMaxDuration = 8f;
+        private float ultMaxFiringDuration = 7f;
+        private int ultWavesFired = 0;
+        private GameObject ultWaveProjectilePrefab;
+        private float ultPlayerVisionDistance = 90f;
+
         public GameObject arenaEffects;
         public CharacterMaster brotherDummyAttackerMaster;
 
@@ -31,10 +40,13 @@ namespace ChallengeMode.Modifiers.Special
             brotherBodyIndex = BodyCatalog.FindBodyIndex("BrotherBody");
             brotherHurtBodyIndex = BodyCatalog.FindBodyIndex("BrotherHurtBody");
             replacementSong = MusicTrackCatalog.FindMusicTrackDef("muSong23");
+            ultWaveProjectilePrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/BrotherHaunt/BrotherUltLineProjectileStatic.prefab").WaitForCompletion();
 
             CharacterBody.onBodyStartGlobal += CharacterBody_onBodyStartGlobal;
             On.RoR2.CharacterBody.OnDeathStart += CharacterBody_OnDeathStart;
             On.RoR2.MusicController.PickCurrentTrack += MusicController_PickCurrentTrack;
+            On.RoR2.MusicController.RecalculateHealth += MusicController_RecalculateHealth;
+            On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
             On.RoR2.Language.GetLocalizedStringByToken += Language_GetLocalizedStringByToken;
             On.EntityStates.Missions.BrotherEncounter.Phase1.PreEncounterBegin += Phase1_PreEncounterBegin;
             On.EntityStates.Missions.BrotherEncounter.EncounterFinished.OnEnter += EncounterFinished_OnEnter;
@@ -43,7 +55,7 @@ namespace ChallengeMode.Modifiers.Special
             On.EntityStates.BrotherMonster.WeaponSlam.FixedUpdate += WeaponSlam_FixedUpdate;
             oldWaveProjectileArc = EntityStates.BrotherMonster.WeaponSlam.waveProjectileArc;
             EntityStates.BrotherMonster.WeaponSlam.waveProjectileArc = 360f;
-            EntityStates.BrotherMonster.WeaponSlam.waveProjectileCount += 6;
+            EntityStates.BrotherMonster.WeaponSlam.waveProjectileCount += 5;
             // sprint bash destroys an item
             On.EntityStates.BrotherMonster.SprintBash.OnEnter += SprintBash_OnEnter;
             // sky leap is longer and homes onto the player
@@ -52,8 +64,11 @@ namespace ChallengeMode.Modifiers.Special
             On.EntityStates.BrotherMonster.ExitSkyLeap.OnEnter += ExitSkyLeap_OnEnter;
             // dash is faster
             EntityStates.BrotherMonster.BaseSlideState.duration *= 0.5f;
-            // big spinny sends shockwaves and knocks up
-            On.EntityStates.BrotherMonster.UltChannelState.FireWave += UltChannelState_FireWave;
+            // big spinny is replaced with a different version
+            On.EntityStates.BrotherMonster.UltEnterState.OnEnter += UltEnterState_OnEnter;
+            On.EntityStates.BrotherMonster.UltChannelState.FixedUpdate += UltChannelState_FixedUpdate;
+            // On.EntityStates.BrotherMonster.UltChannelState.FireWave += UltChannelState_FireWave;
+            On.EntityStates.BrotherMonster.UltChannelState.OnExit += UltChannelState_OnExit;
             // fist slam knocks up
             On.EntityStates.BrotherMonster.FistSlam.FixedUpdate += FistSlam_FixedUpdate;
             // shards end with a tracking bomb
@@ -63,6 +78,8 @@ namespace ChallengeMode.Modifiers.Special
             On.EntityStates.Missions.BrotherEncounter.Phase2.FixedUpdate += Phase2_FixedUpdate;
             // meteorites fall in phases 3 & 4
             On.EntityStates.Missions.BrotherEncounter.BrotherEncounterPhaseBaseState.FixedUpdate += BrotherEncounterPhaseBaseState_FixedUpdate;
+            // phase 4 doesn't use items
+            On.RoR2.ItemStealController.BrotherItemFilter += ItemStealController_BrotherItemFilter;
         }
 
         private void CharacterBody_onBodyStartGlobal(CharacterBody body)
@@ -76,7 +93,10 @@ namespace ChallengeMode.Modifiers.Special
         private void CharacterBody_OnDeathStart(On.RoR2.CharacterBody.orig_OnDeathStart orig, CharacterBody self)
         {
             if (self.bodyIndex == brotherBodyIndex || self.bodyIndex == brotherHurtBodyIndex)
+            {
                 self.RemoveBuff(ChallengeModeContent.Buffs.ChallengeMode_EXBoss);
+                isUlting = false;
+            }
             orig(self);
         }
 
@@ -84,6 +104,24 @@ namespace ChallengeMode.Modifiers.Special
         {
             orig(self, ref newTrack);
             if (newTrack.cachedName == "muSong25") newTrack = replacementSong;
+        }
+
+        private void MusicController_RecalculateHealth(On.RoR2.MusicController.orig_RecalculateHealth orig, MusicController self, GameObject playerObject)
+        {
+            orig(self, playerObject);
+            if (isUlting)
+            {
+                self.rtpcPlayerHealthValue.value = -50f;
+            }
+        }
+
+        private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
+        {
+            orig(self);
+            if (isUlting && self.teamComponent.teamIndex == TeamIndex.Player && self.visionDistance > ultPlayerVisionDistance)
+            {
+                self.visionDistance = ultPlayerVisionDistance;
+            }
         }
 
         private string Language_GetLocalizedStringByToken(On.RoR2.Language.orig_GetLocalizedStringByToken orig, Language self, string token)
@@ -114,12 +152,14 @@ namespace ChallengeMode.Modifiers.Special
             CharacterBody.onBodyStartGlobal -= CharacterBody_onBodyStartGlobal;
             On.RoR2.CharacterBody.OnDeathStart -= CharacterBody_OnDeathStart;
             On.RoR2.MusicController.PickCurrentTrack -= MusicController_PickCurrentTrack;
+            On.RoR2.MusicController.RecalculateHealth -= MusicController_RecalculateHealth;
+            On.RoR2.CharacterBody.RecalculateStats -= CharacterBody_RecalculateStats;
             On.RoR2.Language.GetLocalizedStringByToken -= Language_GetLocalizedStringByToken;
             On.EntityStates.Missions.BrotherEncounter.Phase1.PreEncounterBegin -= Phase1_PreEncounterBegin;
             On.EntityStates.Missions.BrotherEncounter.EncounterFinished.OnEnter -= EncounterFinished_OnEnter;
 
             EntityStates.BrotherMonster.WeaponSlam.waveProjectileArc = oldWaveProjectileArc;
-            EntityStates.BrotherMonster.WeaponSlam.waveProjectileCount -= 6;
+            EntityStates.BrotherMonster.WeaponSlam.waveProjectileCount -= 5;
 
             On.EntityStates.BrotherMonster.WeaponSlam.FixedUpdate -= WeaponSlam_FixedUpdate;
             On.EntityStates.BrotherMonster.SprintBash.OnEnter -= SprintBash_OnEnter;
@@ -127,12 +167,15 @@ namespace ChallengeMode.Modifiers.Special
             On.EntityStates.BrotherMonster.HoldSkyLeap.FixedUpdate -= HoldSkyLeap_FixedUpdate;
             On.EntityStates.BrotherMonster.ExitSkyLeap.OnEnter -= ExitSkyLeap_OnEnter;
             EntityStates.BrotherMonster.BaseSlideState.duration /= 0.5f;
-            On.EntityStates.BrotherMonster.UltChannelState.FireWave -= UltChannelState_FireWave;
+            On.EntityStates.BrotherMonster.UltEnterState.OnEnter -= UltEnterState_OnEnter;
+            // On.EntityStates.BrotherMonster.UltChannelState.FireWave -= UltChannelState_FireWave;
+            On.EntityStates.BrotherMonster.UltChannelState.OnExit -= UltChannelState_OnExit;
             On.EntityStates.BrotherMonster.FistSlam.FixedUpdate -= FistSlam_FixedUpdate;
             On.EntityStates.BrotherMonster.Weapon.FireLunarShards.OnEnter -= FireLunarShards_OnEnter;
             On.EntityStates.Missions.BrotherEncounter.Phase2.OnEnter -= Phase2_OnEnter;
             On.EntityStates.Missions.BrotherEncounter.Phase2.FixedUpdate -= Phase2_FixedUpdate;
             On.EntityStates.Missions.BrotherEncounter.BrotherEncounterPhaseBaseState.FixedUpdate -= BrotherEncounterPhaseBaseState_FixedUpdate;
+            On.RoR2.ItemStealController.BrotherItemFilter -= ItemStealController_BrotherItemFilter;
 
             EXBossAssets.fightEffectsActive = false;
         }
@@ -183,7 +226,7 @@ namespace ChallengeMode.Modifiers.Special
         private void HoldSkyLeap_FixedUpdate(On.EntityStates.BrotherMonster.HoldSkyLeap.orig_FixedUpdate orig, EntityStates.BrotherMonster.HoldSkyLeap self)
         {
             orig(self);
-            self.fixedAge -= 0.3f * Time.fixedDeltaTime;
+            // self.fixedAge -= 0.3f * Time.fixedDeltaTime;
         }
 
         private void ExitSkyLeap_OnEnter(On.EntityStates.BrotherMonster.ExitSkyLeap.orig_OnEnter orig, EntityStates.BrotherMonster.ExitSkyLeap self)
@@ -203,8 +246,17 @@ namespace ChallengeMode.Modifiers.Special
             }
         }
 
+        private void UltEnterState_OnEnter(On.EntityStates.BrotherMonster.UltEnterState.orig_OnEnter orig, EntityStates.BrotherMonster.UltEnterState self)
+        {
+            orig(self);
+            isUlting = true;
+            ultWavesFired = 0;
+        }
+
         private void UltChannelState_FireWave(On.EntityStates.BrotherMonster.UltChannelState.orig_FireWave orig, EntityStates.BrotherMonster.UltChannelState self)
         {
+            // unused
+
             var oldDamage = EntityStates.BrotherMonster.UltChannelState.waveProjectileDamageCoefficient;
             EntityStates.BrotherMonster.UltChannelState.waveProjectileDamageCoefficient = 3f;
             orig(self);
@@ -226,6 +278,47 @@ namespace ChallengeMode.Modifiers.Special
                     }
                 }
             });
+        }
+
+        private void UltChannelState_FixedUpdate(On.EntityStates.BrotherMonster.UltChannelState.orig_FixedUpdate orig, EntityStates.BrotherMonster.UltChannelState self)
+        {
+            self.wavesFired = 99;
+            orig(self);
+            if (self.isAuthority)
+            {
+                if (Mathf.CeilToInt(self.fixedAge / ultMaxFiringDuration * (float)ultWaveCount) > ultWavesFired && ultWavesFired < ultWaveCount)
+                {
+                    ultWavesFired++;
+
+                    var enemies = TeamComponent.GetTeamMembers(TeamIndex.Player).Where(x => x.body && x.body.isPlayerControlled).Select(x => x.body);
+                    foreach (var enemy in enemies)
+                    {
+                        var forward = enemy.inputBank ? enemy.inputBank.aimDirection : enemy.transform.forward;
+                        forward.y = 0f;
+                        forward.Normalize();
+                        var footPosition = enemy.footPosition - forward * 150f;
+                        ProjectileManager.instance.FireProjectile(
+                            ultWaveProjectilePrefab,
+                            footPosition,
+                            Util.QuaternionSafeLookRotation(forward),
+                            self.gameObject,
+                            self.characterBody.damage * 4f,
+                            EntityStates.BrotherMonster.UltChannelState.waveProjectileForce,
+                            Util.CheckRoll(self.characterBody.crit, self.characterBody.master)
+                        );
+                    }
+                }
+                if (self.fixedAge > ultMaxDuration)
+                {
+                    self.outer.SetNextState(new EntityStates.BrotherMonster.UltExitState());
+                }
+            }
+        }
+
+        private void UltChannelState_OnExit(On.EntityStates.BrotherMonster.UltChannelState.orig_OnExit orig, EntityStates.BrotherMonster.UltChannelState self)
+        {
+            orig(self);
+            isUlting = false;
         }
 
         private void FistSlam_FixedUpdate(On.EntityStates.BrotherMonster.FistSlam.orig_FixedUpdate orig, EntityStates.BrotherMonster.FistSlam self)
@@ -405,7 +498,7 @@ namespace ChallengeMode.Modifiers.Special
         {
             orig(self);
             RunMeteors(1f, 15, 8f, 20f);
-            RunSpinny(6f, 4, 2f);
+            RunSpinny(6f, 6, 2f);
         }
 
         private void BrotherEncounterPhaseBaseState_FixedUpdate(On.EntityStates.Missions.BrotherEncounter.BrotherEncounterPhaseBaseState.orig_FixedUpdate orig, EntityStates.Missions.BrotherEncounter.BrotherEncounterPhaseBaseState self)
@@ -416,6 +509,11 @@ namespace ChallengeMode.Modifiers.Special
                 if (PhaseCounter.instance.phase == 3) RunMeteors(0.2f, 6, 10f, 30f);
                 if (PhaseCounter.instance.phase == 4) RunMeteors(0.2f, 12, 6f, 30f);
             }
+        }
+
+        private bool ItemStealController_BrotherItemFilter(On.RoR2.ItemStealController.orig_BrotherItemFilter orig, ItemIndex itemIndex)
+        {
+            return false;
         }
 
         public override bool IsAvailable()

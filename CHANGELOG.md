@@ -1,3 +1,9 @@
+## 1.0.5
+* Mithrix EX:
+	* Phase 1 & 3 Sky Leap uses vanilla timing now
+	* Phase 2 Moderate Spinny projectile count increased
+	* Phase 3 Big Spinny reworked
+	* Phase 4 now doesn't use stolen items
 ## 1.0.4
 * Added a Permanent Toggles section to config, which lets you activate boss reworks outside of the game mode
 * Reduced Mithrix EX's damage values on Big Spinny and shockwaves
