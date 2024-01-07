@@ -1,0 +1,215 @@
+{
+  "pt-BR": {
+    "GAMEMODE_CHALLENGEMODE_NAME": "Virga",
+
+    "TITLE_CHALLENGEMODE": "Virga",
+    "TITLE_CHALLENGEMODE_DESC": "Jogue um modo desafiador com modificadores aleatórios em cada fase.",
+
+    "CHALLENGEMODE_MODIFIER_LIST_TITLE": "Modificadores:",
+
+    "CHALLENGEMODE_MODIFIER_ALWAYSSLIPPERY_NAME": "Rinque de Gelo",
+    "CHALLENGEMODE_MODIFIER_ALWAYSSLIPPERY_DESC": "O chão se torna escorregadio.",
+
+    "CHALLENGEMODE_MODIFIER_UTILITYCOOLDOWN_NAME": "Desamparo",
+    "CHALLENGEMODE_MODIFIER_UTILITYCOOLDOWN_DESC": "Sua Habilidade Auxiliar demora mais para recarregar.",
+
+    "CHALLENGEMODE_MODIFIER_CHESTFAILCHANCE_NAME": "Por Favor Tente Novamente",
+    "CHALLENGEMODE_MODIFIER_CHESTFAILCHANCE_DESC": "Compra de Baús pode falhar.",
+
+    "CHALLENGEMODE_MODIFIER_NOOSP_NAME": "Sem Plano de Saúde?",
+    "CHALLENGEMODE_MODIFIER_NOOSP_DESC": "Receba 10% de sua saúde em escudo.",
+
+    "CHALLENGEMODE_MODIFIER_PRIMARYSTAMINA_NAME": "Estâmina",
+    "CHALLENGEMODE_MODIFIER_PRIMARYSTAMINA_DESC": "Usar muitas vezes sua Habilidade Primária desacelera seus ataques.",
+
+    "CHALLENGEMODE_MODIFIER_PRINTERBUG_NAME": "Copia Isso",
+    "CHALLENGEMODE_MODIFIER_PRINTERBUG_DESC": "Impressoras 3D podem tomar um item extra.",
+
+    "CHALLENGEMODE_MODIFIER_LOWHPSTRESS_NAME": "Morte se Aproxima",
+    "CHALLENGEMODE_MODIFIER_LOWHPSTRESS_DESC": "Toda regeneração é reduzida caso esteja com menos de 25% PV.",
+
+    "CHALLENGEMODE_MODIFIER_PERFECTEDONPLANET_NAME": "Construtos Sem Alma",
+    "CHALLENGEMODE_MODIFIER_PERFECTEDONPLANET_DESC": "Elites aperfeiçoadas podem aparecer.",
+
+    "CHALLENGEMODE_MODIFIER_USELESSSTEAK_NAME": "Carna Estragada",
+    "CHALLENGEMODE_MODIFIER_USELESSSTEAK_DESC": "Filé de Bisão dá 25 menos de saúde máxima.",
+
+    "CHALLENGEMODE_MODIFIER_MALACHITESPIKEONKILL_NAME": "Seus Seguidores",
+    "CHALLENGEMODE_MODIFIER_MALACHITESPIKEONKILL_DESC": "Inimigos abatidos derrubam espinhos.",
+
+    "CHALLENGEMODE_MODIFIER_NOHEALINGAFTERHURT_NAME": "Feridas Profundas",
+    "CHALLENGEMODE_MODIFIER_NOHEALINGAFTERHURT_DESC": "Cura é desabilitada por meio segundo ao ser atingido.",
+
+    "CHALLENGEMODE_MODIFIER_FIREBACKFIRE_NAME": "Tiro pela Culatra",
+    "CHALLENGEMODE_MODIFIER_FIREBACKFIRE_DESC": "Incendiar inimigos também incedeia você.",
+
+    "CHALLENGEMODE_MODIFIER_BOSSFOCUS_NAME": "Olhos em Mim",
+    "CHALLENGEMODE_MODIFIER_BOSSFOCUS_DESC": "Inimigos comuns recebem menos dano enquanto o chefe estiver presente.",
+
+    "CHALLENGEMODE_MODIFIER_DOUBLEJUMPHURTS_NAME": "Asas Sangrentas",
+    "CHALLENGEMODE_MODIFIER_DOUBLEJUMPHURTS_DESC": "Receba um salto extra... por um preço.",
+
+    "CHALLENGEMODE_MODIFIER_CURSEONHEAVYHIT_NAME": "Arte das Trevas",
+    "CHALLENGEMODE_MODIFIER_CURSEONHEAVYHIT_DESC": "Acertos pesados deixam você e o inimigo marcados para morrer.",
+
+    "CHALLENGEMODE_MODIFIER_BLOCKSFORHEALTH_NAME": "Arte Sagrada",
+    "CHALLENGEMODE_MODIFIER_BLOCKSFORHEALTH_DESC": "Troque 10% PV para bloquear 10 ataques nessa fase.",
+
+    "CHALLENGEMODE_MODIFIER_EXPENSIVEPURCHASABLES_NAME": "Custo Irreversível",
+    "CHALLENGEMODE_MODIFIER_EXPENSIVEPURCHASABLES_DESC": "Algumas coisas custam mais.",
+
+    "CHALLENGEMODE_MODIFIER_MISSCHANCE_NAME": "Mãos Trêmulas",
+    "CHALLENGEMODE_MODIFIER_MISSCHANCE_DESC": "10% de chance de não causar dano.",
+
+    "CHALLENGEMODE_MODIFIER_REDUCEDVISION_NAME": "Crepúsculo",
+    "CHALLENGEMODE_MODIFIER_REDUCEDVISION_DESC": "Visão reduzida.",
+
+    "CHALLENGEMODE_MODIFIER_BURNCHANCE_NAME": "Vento Quente Soprando",
+    "CHALLENGEMODE_MODIFIER_BURNCHANCE_DESC": "Ataques de inimigos podem incendiar.",
+
+    "CHALLENGEMODE_MODIFIER_ALLCHESTSCLOAKED_NAME": "Ilusão Óptica",
+    "CHALLENGEMODE_MODIFIER_ALLCHESTSCLOAKED_DESC": "Todos os Baús são Invisíveis.",
+
+    "CHALLENGEMODE_MODIFIER_LOSEGOLDOVERTIME_NAME": "Bolsos Rasgados",
+    "CHALLENGEMODE_MODIFIER_LOSEGOLDOVERTIME_DESC": "Perca ouro com o tempo.",
+
+    "CHALLENGEMODE_MODIFIER_BOMBDROP_NAME": "Boom Boom Boom!",
+    "CHALLENGEMODE_MODIFIER_BOMBDROP_DESC": "Deixe uma bomba periodicamente.",
+
+    "CHALLENGEMODE_MODIFIER_NOGOINGBACK_NAME": "Sem Volta",
+    "CHALLENGEMODE_MODIFIER_NOGOINGBACK_DESC": "Você não pode andar para trás.",
+
+    "CHALLENGEMODE_MODIFIER_BIGSHOT_NAME": "Tirambaço",
+    "CHALLENGEMODE_MODIFIER_BIGSHOT_DESC": "Reduz a velocidade de ataque, aumenta o dano.",
+
+    "CHALLENGEMODE_MODIFIER_DROPPINGITEMS_NAME": "Soluços",
+    "CHALLENGEMODE_MODIFIER_DROPPINGITEMS_DESC": "Ocasionalmente derruba seus itens.",
+
+    "CHALLENGEMODE_MODIFIER_RANDOMMETEORS_NAME": "Clima Sombrio",
+    "CHALLENGEMODE_MODIFIER_RANDOMMETEORS_DESC": "Uma chuva de meteoros ocorre de vez em quando.",
+
+    "CHALLENGEMODE_MODIFIER_DRONEPURGATORY_NAME": "Purgatório Mecânico",
+    "CHALLENGEMODE_MODIFIER_DRONEPURGATORY_DESC": "Um drone aleatório morre a cada minuto.",
+
+    "CHALLENGEMODE_MODIFIER_STEAKREPLACESRANDOMITEMS_NAME": "Cheio",
+    "CHALLENGEMODE_MODIFIER_STEAKREPLACESRANDOMITEMS_DESC": "Qualquer item derrubado pode se tornar um Filé de Bisão.",
+
+    "CHALLENGEMODE_MODIFIER_PURCHASESINFLICTSLOW_NAME": "Pão-Duro",
+    "CHALLENGEMODE_MODIFIER_PURCHASESINFLICTSLOW_DESC": "Compras causam lentidão.",
+
+    "CHALLENGEMODE_MODIFIER_REROLLITEMS_NAME": "O que será que é?",
+    "CHALLENGEMODE_MODIFIER_REROLLITEMS_DESC": "Um item aleatório é rerolado a cada minuto.",
+
+    "CHALLENGEMODE_MODIFIER_INCLUDEVOIDREAVERS_NAME": "Nosso Veredito é...",
+    "CHALLENGEMODE_MODIFIER_INCLUDEVOIDREAVERS_DESC": "Devastadores Astrais são gerados.",
+
+    "CHALLENGEMODE_MODIFIER_HALFHEALINGTOSHIELDS_NAME": "Distribuição Justa",
+    "CHALLENGEMODE_MODIFIER_HALFHEALINGTOSHIELDS_DESC": "Cura é cortada pela metade, escudos recarregam mais rápido.",
+
+    "CHALLENGEMODE_MODIFIER_DEFENSEDAMAGE_NAME": "Dano Defensivo",
+    "CHALLENGEMODE_MODIFIER_DEFENSEDAMAGE_DESC": "Ser atingido reduz a armadura temporariamente.",
+
+    "CHALLENGEMODE_MODIFIER_ENEMIESHAVESHIELD_NAME": "Cérebro Laser",
+    "CHALLENGEMODE_MODIFIER_ENEMIESHAVESHIELD_DESC": "Inimigos recebem 20% de escudo.",
+
+    "CHALLENGEMODE_MODIFIER_BOSSREVIVE_NAME": "Ainda Não Está Morto",
+    "CHALLENGEMODE_MODIFIER_BOSSREVIVE_DESC": "Chefes morrem duas vezes.",
+
+    "CHALLENGEMODE_MODIFIER_EQUIPMENTCDRANDOMIZED_NAME": "Concerte Você Mesmo",
+    "CHALLENGEMODE_MODIFIER_EQUIPMENTCDRANDOMIZED_DESC": "Tempo de Recarga de Equipamentos podem variar.",
+
+    "CHALLENGEMODE_MODIFIER_BACKPACKWEIGHT_NAME": "Peso da Mochila",
+    "CHALLENGEMODE_MODIFIER_BACKPACKWEIGHT_DESC": "-1% de velocidade por item no inventário.",
+
+    "CHALLENGEMODE_MODIFIER_KILLREMORSE_NAME": "Remorso",
+    "CHALLENGEMODE_MODIFIER_KILLREMORSE_DESC": "Abater um inimigo reduz a saúde temporariamente.",
+
+    "CHALLENGEMODE_MODIFIER_HOLDOUTSHRINK_NAME": "Dinâmica de Bolhas",
+    "CHALLENGEMODE_MODIFIER_HOLDOUTSHRINK_DESC": "As Zonas do Teleportador são maiores, mas diminuem ao longo do tempo.",
+
+    "CHALLENGEMODE_MODIFIER_TURNOFFMYPAININHIBITORS_NAME": "Enchente de Dor",
+    "CHALLENGEMODE_MODIFIER_TURNOFFMYPAININHIBITORS_DESC": "Dano recebido é aumentado, mas você recebe um bônus.",
+
+    "CHALLENGEMODE_MODIFIER_BROKENSPINE_NAME": "Espinha Quebrada",
+    "CHALLENGEMODE_MODIFIER_BROKENSPINE_DESC": "Receba mais dano pelas costas.",
+
+    "CHALLENGEMODE_MODIFIER_DEBUFFINTPRANGE_NAME": "Círculo do Inferno",
+    "CHALLENGEMODE_MODIFIER_DEBUFFINTPRANGE_DESC": "Zonas do Teleportador causam lentidão.",
+
+    "CHALLENGEMODE_MODIFIER_NOCRITS_NAME": "Justo e Balanceado",
+    "CHALLENGEMODE_MODIFIER_NOCRITS_DESC": "Chance de Acerto Crítico aleatório é reduzido para 0%.",
+
+    "CHALLENGEMODE_MODIFIER_INCREASEDKNOCKBACK_NAME": "Saco de Pancadas",
+    "CHALLENGEMODE_MODIFIER_INCREASEDKNOCKBACK_DESC": "Empurrões contra você são aumentados.",
+
+    "CHALLENGEMODE_MODIFIER_ENEMYMISSILEONHIT_NAME": "Erro Balístico",
+    "CHALLENGEMODE_MODIFIER_ENEMYMISSILEONHIT_DESC": "Chance de disparar um míssil em você ao ser atingido.",
+
+    "CHALLENGEMODE_MODIFIER_FLUTTERJUMPS_NAME": "Distúrbio",
+    "CHALLENGEMODE_MODIFIER_FLUTTERJUMPS_DESC": "+10 saltos extras, mas a altura do salto é diminuída.",
+
+    "CHALLENGEMODE_MODIFIER_FASTERBARRIERDECAY_NAME": "Feitiço da Égide",
+    "CHALLENGEMODE_MODIFIER_FASTERBARRIERDECAY_DESC": "Barreiras decaem três vezes mais rápido.",
+
+    "CHALLENGEMODE_MODIFIER_ENEMYLEECH_NAME": "Vampiros",
+    "CHALLENGEMODE_MODIFIER_ENEMYLEECH_DESC": "Inimigos são curados ao causar dano.",
+
+    "CHALLENGEMODE_MODIFIER_PROCLIMIT_NAME": "Dado por um Trocado",
+    "CHALLENGEMODE_MODIFIER_PROCLIMIT_DESC": "Perde sorte após 500 efeitos bem-sucedidos.",
+
+    "CHALLENGEMODE_MODIFIER_BOSSHALFHPARMOR_NAME": "Benção do Baluarte",
+    "CHALLENGEMODE_MODIFIER_BOSSHALFHPARMOR_DESC": "Chefes ganham armadura temporária abaixo de 50% de saúde.",
+
+    "CHALLENGEMODE_MODIFIER_FROSTBITE_NAME": "<color=#C1FCFF>Congelamento</color>",
+    "CHALLENGEMODE_MODIFIER_FROSTBITE_DESC": "Não fique no frio por muito tempo!",
+
+    "CHALLENGEMODE_MODIFIER_MOUNTAINWINDS_NAME": "<color=#FFF5B5>Altitude de Cume</color>",
+    "CHALLENGEMODE_MODIFIER_MOUNTAINWINDS_DESC": "Atenção ao vento!",
+
+    "CHALLENGEMODE_MODIFIER_ACIDRAIN_NAME": "<color=#C8FF96>Chuva Ácida</color>",
+    "CHALLENGEMODE_MODIFIER_ACIDRAIN_DESC": "Procure um abrigo!",
+
+    "CHALLENGEMODE_MODIFIER_HOTSAND_NAME": "<color=#FF581C>Calor Sibilante</color>",
+    "CHALLENGEMODE_MODIFIER_HOTSAND_DESC": "Corra para evitar superaquecimento!",
+
+    "CHALLENGEMODE_MODIFIER_COMMSJAM_NAME": "<color=#B5FFE6>Interferência nas Comunicações</color>",
+    "CHALLENGEMODE_MODIFIER_COMMSJAM_DESC": "Ser atingido desabilita drones e equipamentos!",
+
+    "CHALLENGEMODE_MODIFIER_THUNDER_NAME": "<color=#B5FFE6>Bosque Trovejante</color>",
+    "CHALLENGEMODE_MODIFIER_THUNDER_DESC": "Cuidado com os raios!",
+
+    "CHALLENGEMODE_MODIFIER_VOIDPATROL_NAME": "<color=#8D47FF>Missão Furtiva</color>",
+    "CHALLENGEMODE_MODIFIER_VOIDPATROL_DESC": "Patrulheiros Nulos rondam a área!",
+
+    "CHALLENGEMODE_MODIFIER_BROTHEREX_NAME": "<link=\"ChallengeModeRainbow\">Acsendência da Lua Malígna</link>",
+    "CHALLENGEMODE_MODIFIER_BROTHEREX_DESC": "Mithrix está totalmente potencializado!",
+
+    "CHALLENGEMODE_MODIFIER_VOIDRAIDCRABEX_NAME": "<link=\"ChallengeModeRainbow\">Chamada do Vazio</link>",
+    "CHALLENGEMODE_MODIFIER_VOIDRAIDCRABEX_DESC": "Prole Nula aprendeu alguns truques!",
+
+    "CHALLENGEMODE_SKILL_PLAYERSTUNLOCKED_NAME": "Atordoado",
+    "CHALLENGEMODE_SKILL_PLAYERSTUNLOCKED_DESCRIPTION": "Não pode agir.",
+
+    "CHALLENGEMODE_SKILL_DISARMED_NAME": "Desarmado",
+    "CHALLENGEMODE_SKILL_DISARMED_DESCRIPTION": "Não pode utilizar sua Habilidade Primária nem saltos.",
+
+    "CHALLENGEMODE_FROSTBITE_WARMTH_TORCH_NAME": "Tocha do Aconchego",
+    "CHALLENGEMODE_HOTSAND_BURNINFLICTOR_NAME": "Calor Estalante",
+    "CHALLENGEMODE_THUNDER_ATTACKER_NAME": "Relâmpago",
+
+    "BODY_MODIFIER_CHALLENGEMODE_EXBOSS": "{0} EX",
+    "EXBOSS_DIALOGUE_FORMAT": "<color=#AB9AD3><size=180%>{1} EX: <link=\"ChallengeModeShaky\">{0}</link></color></size>",
+
+    "CHALLENGEMODE_PETGAME_TITLE": "Protetor do Arvoredo",
+    "CHALLENGEMODE_PETGAME_PLAY": "Jogar",
+    "CHALLENGEMODE_PETGAME_TITLE_ONSCREEN": "PROTETOR DO\r\nARVOREDO",
+    "CHALLENGEMODE_PETGAME_BUTTON_FEED": "Alimentar",
+    "CHALLENGEMODE_PETGAME_BUTTON_PET": "Acariciar!",
+    "CHALLENGEMODE_PETGAME_BUTTON_SLEEP": "SONO",
+    "CHALLENGEMODE_PETGAME_LEVEL": "LV.{0}",
+    "CHALLENGEMODE_PETGAME_FOOD": "COMIDA:{0}",
+    "CHALLENGEMODE_PETGAME_CONSOLE_BUTTON_POWER": "Ligado/Desligado",
+    "CHALLENGEMODE_PETGAME_CONSOLE_BUTTON_CONFIRM": "OK",
+    "CHALLENGEMODE_PETGAME_CONSOLE_BUTTON_PALETTESWAP": "Paleta"
+  }
+}
